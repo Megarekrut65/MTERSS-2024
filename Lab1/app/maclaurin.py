@@ -1,12 +1,12 @@
 import math
 from decimal import Decimal
 
-from euler import Euler
+from app.euler import EulerZigzag
 
 
 class MaclaurinSeries:
     @staticmethod
-    def evaluate(x: Decimal|float|str, eps: Decimal|float|str) -> Decimal:
+    def evaluate(x: Decimal|float|str, eps: Decimal|float|str) -> tuple[Decimal, int]:
         if not isinstance(x, Decimal):
             x = Decimal(x)
         if not isinstance(eps, Decimal):
@@ -24,7 +24,16 @@ class MaclaurinSeries:
             n_fac *= n
             x_n *= x
             prev = sum_
-            sum_ += x_n * Euler.zigzag(n) / n_fac
+            sum_ += Decimal(EulerZigzag.evaluate(n)) * x_n / n_fac
             n += 1
 
-        return prev
+        # n = 1
+        # sum_ = Decimal(1)
+        # prev = Decimal(0)
+        #
+        # while abs(sum_ - prev) > eps:
+        #     prev = sum_
+        #     sum_ += Decimal(EulerZigzag.evaluate(n)) / math.factorial(n) * x**n
+        #     n+=1
+
+        return sum_, n - 1

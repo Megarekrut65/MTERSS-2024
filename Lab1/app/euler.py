@@ -1,7 +1,7 @@
 from fractions import Fraction
 
-import bernoulli
-import utility
+from app import bernoulli
+from app import utility
 
 
 class Euler:
@@ -22,10 +22,12 @@ class Euler:
         Euler.__cache[n] = int(euler_num)
         return Euler.__cache[n]
 
+
+class EulerZigzag:
     @staticmethod
-    def zigzag(n: int) -> int:
+    def evaluate(n: int) -> int:
         if n < 0:
-            raise ValueError("The index of Euler number cannot be negative.")
+            raise ValueError("The index of Euler zigzag number cannot be negative.")
         if n % 2 == 0:
             return (-1)**(n//2) * Euler.evaluate(n)
         two_n = 2**(n+1)

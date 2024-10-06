@@ -1,6 +1,6 @@
 from fractions import Fraction
 
-import utility
+from app import utility
 
 
 class Bernoulli:
