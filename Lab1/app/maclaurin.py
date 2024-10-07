@@ -5,8 +5,10 @@ from app.euler import EulerZigzag
 
 
 class MaclaurinSeries:
-    @staticmethod
-    def evaluate(x: Decimal|float|str, eps: Decimal|float|str) -> tuple[Decimal, int]:
+    def __init__(self):
+        self.cancel = False
+
+    def evaluate(self, x: Decimal|float|str, eps: Decimal|float|str) -> tuple[Decimal, int]:
         if not isinstance(x, Decimal):
             x = Decimal(x)
         if not isinstance(eps, Decimal):
@@ -20,7 +22,7 @@ class MaclaurinSeries:
         sum_ = Decimal(1)
         prev = Decimal(0)
         n = 1
-        while abs(sum_ - prev) > eps:
+        while abs(sum_ - prev) > eps and not self.cancel:
             n_fac *= n
             x_n *= x
             prev = sum_
