@@ -15,7 +15,7 @@ class MaclaurinSeries:
             eps = Decimal(eps)
 
         if abs(x) >= math.pi / 2:
-            raise ValueError(f"The function argument is not scoped: {x}")
+            raise ValueError(f"The function argument({x}) does not belong to the domain. The domain is (-π/2, π/2)")
 
         x_n = Decimal(1)
         n_fac = 1
